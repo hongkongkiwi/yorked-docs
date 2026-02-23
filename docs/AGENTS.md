@@ -2,9 +2,9 @@
 
 Scope: applies to everything under `docs/`.
 
-Owner: Engineering  
-Status: Active  
-Last Updated: 2026-02-20  
+Owner: Engineering
+Status: Active
+Last Updated: 2026-02-23
 Depends On: `docs/README.md`
 
 ## Purpose
@@ -122,9 +122,9 @@ If you need to implement something without a spec:
 ```markdown
 # Feature Specification: [Name]
 
-Owner: [Team]  
-Status: Draft  
-Last Updated: YYYY-MM-DD  
+Owner: [Team]
+Status: Draft
+Last Updated: YYYY-MM-DD
 Depends On: [dependencies]
 
 ## Overview
@@ -135,8 +135,8 @@ Brief description of the feature.
 
 ### US-001: [Title]
 
-**As a** [role]  
-**I want to** [goal]  
+**As a** [role]
+**I want to** [goal]
 **So that** [benefit]
 
 **Acceptance Criteria:**
@@ -224,7 +224,7 @@ Before finalizing any work:
 
 ### Starting a New Phase
 
-1. Create phase doc in `docs/execution/phases/`
+1. Create phase doc in `docs/execution/epic-plans/`
 2. Define exit criteria
 3. Link to epics in `docs/execution/epics/`
 4. Update `docs/execution/delivery-checklist.md`

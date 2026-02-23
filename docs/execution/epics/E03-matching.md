@@ -1,17 +1,20 @@
 # Epic: Curated Matching Experience
 
-Owner: Backend + Mobile  
-Status: Active  
-Last Updated: 2026-02-20  
+Owner: Backend + Mobile
+Status: Active
+Last Updated: 2026-02-23
 Depends On: `docs/execution/epics/E02-onboarding.md`
 
 ## Overview
 
 Daily match generation and offer presentation. The core value proposition of Yoked.
 
-**Duration:** 4 weeks (Weeks 9-12)  
-**Phase:** Tech Phase 3  
+**Window:** Weeks 6-8
+**Epic:** E03
 **Priority:** P0 (Committed)
+
+> **Canonical sequencing and scope:** `docs/execution/epic-plans/implementation-plan.md`.
+> Task tables below are detailed drafts and may lag; reconcile against the implementation plan before sprint execution.
 
 ## Specs
 

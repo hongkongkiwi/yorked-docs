@@ -1,9 +1,9 @@
 # Product Roadmap
 
-Owner: Product  
-Status: Active  
-Last Updated: 2026-02-20  
-Depends On: `docs/vision/product-vision.md`, `docs/execution/phases/intent-phase-canonical-map.md`
+Owner: Product
+Status: Active
+Last Updated: 2026-02-23
+Depends On: `docs/vision/product-vision.md`, `docs/execution/epic-plans/intent-phase-canonical-map.md`
 
 ## Overview
 
@@ -21,7 +21,7 @@ Each MVP phase is designed to produce a shippable app increment for an intended 
 ## Canonical Scope Rule
 
 When older ideation docs conflict with this roadmap, use:
-1. `docs/execution/phases/intent-phase-canonical-map.md` for intent and phase mapping.
+1. `docs/execution/epic-plans/intent-phase-canonical-map.md` for intent and phase mapping.
 2. `docs/specs/*` for feature-level acceptance criteria.
 3. `docs/technical/contracts/*` + `docs/technical/decisions/*` for final technical authority.
 
@@ -39,7 +39,7 @@ V2 focuses on one user outcome: people should feel more certain and less drained
 
 ## MVP Phase 1: Identity & Core Platform
 
-**Timeline:** Weeks 1-4  
+**Timeline:** Weeks 1-4
 **Goal:** Core app infrastructure and onboarding basics
 
 | Feature | Description |
@@ -65,7 +65,7 @@ V2 focuses on one user outcome: people should feel more certain and less drained
 
 ## MVP Phase 2: Onboarding & Verification Journey
 
-**Timeline:** Weeks 5-8  
+**Timeline:** Weeks 5-8
 **Goal:** Trust and completion quality at signup
 
 | Feature | Description |
@@ -97,7 +97,7 @@ V2 focuses on one user outcome: people should feel more certain and less drained
 
 ## MVP Phase 3: Curated Matching Experience
 
-**Timeline:** Weeks 9-12  
+**Timeline:** Weeks 9-12
 **Goal:** Deliver low-fatigue daily decisions with higher-confidence matches
 
 | Feature | Description |
@@ -127,7 +127,7 @@ V2 focuses on one user outcome: people should feel more certain and less drained
 
 ## MVP Phase 4: Real-Time Messaging Experience
 
-**Timeline:** Weeks 13-16  
+**Timeline:** Weeks 13-16
 **Goal:** Real-time messaging between mutual matches
 
 | Feature | Description |
@@ -155,7 +155,7 @@ V2 focuses on one user outcome: people should feel more certain and less drained
 
 ## MVP Phase 5: Trust & Safety Experience
 
-**Timeline:** Weeks 17-20  
+**Timeline:** Weeks 17-20
 **Goal:** Operational trust and safety readiness
 
 | Feature | Description |
@@ -184,7 +184,7 @@ V2 focuses on one user outcome: people should feel more certain and less drained
 
 ## MVP Phase 6: Reliability & Launch Experience
 
-**Timeline:** Weeks 21-24  
+**Timeline:** Weeks 21-24
 **Goal:** Production readiness and controlled beta launch
 
 | Feature | Description |
@@ -265,8 +265,8 @@ Can ship at multiple quality gates:
 ## Related Documents
 
 - `docs/vision/product-vision.md` - Overall vision and business model
-- `docs/execution/phases/intent-phase-canonical-map.md` - Canonical intent and Now/Next/Later mapping from V3/V4 PDFs
+- `docs/execution/epic-plans/intent-phase-canonical-map.md` - Canonical intent and Now/Next/Later mapping from V3/V4 PDFs
 - `docs/execution/delivery-checklist.md` - DRI ownership, phase exit criteria, and go/no-go checklist
 - `docs/vision/competitive.md` - Expanded competitive and adjacency benchmark set
-- `docs/execution/phases/implementation-plan.md` - Technical implementation details
+- `docs/execution/epic-plans/implementation-plan.md` - Technical implementation details
 - `docs/specs/*.md` - Feature specifications

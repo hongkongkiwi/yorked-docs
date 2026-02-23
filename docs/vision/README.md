@@ -1,8 +1,8 @@
 # Vision & Strategy
 
-Owner: Product  
-Status: Active  
-Last Updated: 2026-02-20  
+Owner: Product
+Status: Active
+Last Updated: 2026-02-23
 Depends On: N/A
 
 ## Purpose
@@ -26,7 +26,7 @@ Vision docs feed into `execution/` for phase planning and `specs/` for feature r
 
 When vision changes:
 1. Update the relevant vision doc
-2. Review impact on `execution/phases/`
+2. Review impact on `execution/epic-plans/`
 3. Update affected `specs/`
 
 ## Status

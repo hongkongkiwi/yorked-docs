@@ -1,17 +1,20 @@
 # Epic: Onboarding & Verification Journey
 
-Owner: Full Stack  
-Status: Active  
-Last Updated: 2026-02-20  
+Owner: Full Stack
+Status: Active
+Last Updated: 2026-02-23
 Depends On: `docs/execution/epics/E01-identity.md`
 
 ## Overview
 
 Complete onboarding flow from download to match-ready. Includes profile creation, questionnaire, and verification.
 
-**Duration:** 4 weeks (Weeks 5-8)  
-**Phase:** Tech Phase 2  
+**Window:** Weeks 3-5
+**Epic:** E02
 **Priority:** P0 (Committed)
+
+> **Canonical sequencing and scope:** `docs/execution/epic-plans/implementation-plan.md`.
+> Task tables below are detailed drafts and may lag; reconcile against the implementation plan before sprint execution.
 
 ## Specs
 

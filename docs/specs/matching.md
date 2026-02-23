@@ -1,8 +1,8 @@
 # Feature Specification: Matching
 
-Owner: Product + Engineering  
+Owner: Product + Engineering
 Status: Active
-Last Updated: 2026-02-20  
+Last Updated: 2026-02-23
 Depends On: `docs/ux/flows/matching.md`, `docs/technical/contracts/openapi.yaml`, `docs/technical/decisions/ADR-0004-matchmaking-idempotency.md`, `docs/specs/matching-scoring-engine.md`, `docs/specs/visual-preference-studio.md`, `docs/specs/gender-responsive-matching.md`
 
 ## Overview
@@ -11,7 +11,7 @@ The matching feature generates daily curated offers plus a weekly anchor offer u
 
 ## Scope Clarification
 
-Aligned with `docs/execution/phases/intent-phase-canonical-map.md`:
+Aligned with `docs/execution/epic-plans/intent-phase-canonical-map.md`:
 - Matching is inclusive and preference-driven; no heterosexual-only lock in core logic.
 - Active queue limits are behavior/risk/policy based only; no gender-based caps.
 - Attractiveness-band hard filters are not an MVP rule; visual preference affinity is a secondary ranking signal.
@@ -20,7 +20,7 @@ Aligned with `docs/execution/phases/intent-phase-canonical-map.md`:
 
 ### US-001: Daily + Anchor Match Offers
 
-**As a** user  
+**As a** user
 **I want to** receive curated offers on a predictable cadence
 **So that** I can find compatible people without endless swiping
 
@@ -41,8 +41,8 @@ Aligned with `docs/execution/phases/intent-phase-canonical-map.md`:
 
 ### US-002: Accept Match
 
-**As a** user  
-**I want to** accept a match offer  
+**As a** user
+**I want to** accept a match offer
 **So that** I can express interest in someone
 
 **Acceptance Criteria:**
@@ -58,8 +58,8 @@ Aligned with `docs/execution/phases/intent-phase-canonical-map.md`:
 
 ### US-003: Pass Match
 
-**As a** user  
-**I want to** pass on a match offer  
+**As a** user
+**I want to** pass on a match offer
 **So that** I only match with people I'm interested in
 
 **Acceptance Criteria:**
@@ -75,8 +75,8 @@ Aligned with `docs/execution/phases/intent-phase-canonical-map.md`:
 
 ### US-004: Not Now
 
-**As a** user  
-**I want to** defer a decision  
+**As a** user
+**I want to** defer a decision
 **So that** I can decide later
 
 **Acceptance Criteria:**
@@ -105,8 +105,8 @@ Aligned with `docs/execution/phases/intent-phase-canonical-map.md`:
 
 ### US-006: Mutual Match
 
-**As a** user  
-**I want to** know when we both accept  
+**As a** user
+**I want to** know when we both accept
 **So that** we can start chatting
 
 **Acceptance Criteria:**
@@ -123,8 +123,8 @@ Aligned with `docs/execution/phases/intent-phase-canonical-map.md`:
 
 ### US-007: View Active Matches
 
-**As a** user  
-**I want to** see my active matches  
+**As a** user
+**I want to** see my active matches
 **So that** I can manage my conversations
 
 **Acceptance Criteria:**
@@ -139,8 +139,8 @@ Aligned with `docs/execution/phases/intent-phase-canonical-map.md`:
 
 ### US-008: Unmatch
 
-**As a** user  
-**I want to** unmatch with someone  
+**As a** user
+**I want to** unmatch with someone
 **So that** I can end the connection
 
 **Acceptance Criteria:**

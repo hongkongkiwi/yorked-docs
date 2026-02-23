@@ -1,8 +1,8 @@
 # Feature Specification: Onboarding
 
-Owner: Product + Engineering  
-Status: Active  
-Last Updated: 2026-02-20  
+Owner: Product + Engineering
+Status: Active
+Last Updated: 2026-02-23
 Depends On: `docs/ux/flows/onboarding.md`, `docs/technical/contracts/openapi.yaml`, `docs/specs/visual-preference-studio.md`
 
 ## Overview
@@ -15,7 +15,7 @@ Onboarding supports two matching readiness modes:
 
 ## Scope Clarification
 
-Aligned with `docs/execution/phases/intent-phase-canonical-map.md`:
+Aligned with `docs/execution/epic-plans/intent-phase-canonical-map.md`:
 - MVP social auth providers are Apple + Google (with phone OTP requirement). Facebook is out of MVP scope.
 - Verification artifacts are trust/safety inputs and policy gates, not attractiveness-ranking inputs in MVP.
 - VPS supports explicit preference capture for ranking quality; advanced generated-face pipelines are post-MVP.
@@ -24,8 +24,8 @@ Aligned with `docs/execution/phases/intent-phase-canonical-map.md`:
 
 ### US-001: Phone Authentication
 
-**As a** new user  
-**I want to** sign up with my phone number  
+**As a** new user
+**I want to** sign up with my phone number
 **So that** I can create an account quickly and securely
 
 **Acceptance Criteria:**
@@ -41,8 +41,8 @@ Aligned with `docs/execution/phases/intent-phase-canonical-map.md`:
 
 ### US-002: Social Login
 
-**As a** new user  
-**I want to** sign up with Apple or Google  
+**As a** new user
+**I want to** sign up with Apple or Google
 **So that** I don't need to remember another password
 
 **Acceptance Criteria:**
@@ -57,8 +57,8 @@ Aligned with `docs/execution/phases/intent-phase-canonical-map.md`:
 
 ### US-003: Age Verification
 
-**As a** user  
-**I want to** confirm I am 18 or older  
+**As a** user
+**I want to** confirm I am 18 or older
 **So that** I can use a dating app legally
 
 **Acceptance Criteria:**
@@ -72,8 +72,8 @@ Aligned with `docs/execution/phases/intent-phase-canonical-map.md`:
 
 ### US-004: Profile Creation
 
-**As a** user  
-**I want to** create a basic profile  
+**As a** user
+**I want to** create a basic profile
 **So that** others can learn about me
 
 **Acceptance Criteria:**
@@ -88,8 +88,8 @@ Aligned with `docs/execution/phases/intent-phase-canonical-map.md`:
 
 ### US-005: Integrated Profiling Questionnaire
 
-**As a** user  
-**I want to** answer psychological and preference questions in one flow  
+**As a** user
+**I want to** answer psychological and preference questions in one flow
 **So that** I get better match recommendations
 
 **Acceptance Criteria:**
@@ -124,8 +124,8 @@ Aligned with `docs/execution/phases/intent-phase-canonical-map.md`:
 
 ### US-007: Photo Verification
 
-**As a** user  
-**I want to** verify my identity with a selfie  
+**As a** user
+**I want to** verify my identity with a selfie
 **So that** others know I'm real
 
 **Acceptance Criteria:**
@@ -144,8 +144,8 @@ Aligned with `docs/execution/phases/intent-phase-canonical-map.md`:
 
 ### US-008: Account Recovery
 
-**As a** user who lost access  
-**I want to** recover my account  
+**As a** user who lost access
+**I want to** recover my account
 **So that** I don't lose my matches and messages
 
 **Acceptance Criteria:**

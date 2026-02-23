@@ -3,8 +3,8 @@
 Date: 2026-02-19
 Status: Accepted
 Owner: Engineering
-Last Updated: 2026-02-20
-Depends On: `docs/technical/contracts/asyncapi.yaml`, `docs/execution/phases/implementation-plan.md`, `docs/technical/decisions/ADR-0013-hono-api-framework.md`
+Last Updated: 2026-02-23
+Depends On: `docs/technical/contracts/asyncapi.yaml`, `docs/execution/epic-plans/implementation-plan.md`, `docs/technical/decisions/ADR-0013-hono-api-framework.md`
 
 ## Context
 
@@ -128,7 +128,7 @@ Use a **hybrid model** with explicit ownership boundaries:
 ### Why ws over Socket.io
 
 | Factor | ws | Socket.io |
-|--------|----|-----------| 
+|--------|----|-----------|
 | Bundle size | ~50KB | ~200KB |
 | Protocol | Standard WebSocket | Custom with fallbacks |
 | Edge support | ✅ Works everywhere | ❌ Node.js only |

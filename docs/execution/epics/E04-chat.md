@@ -1,17 +1,20 @@
-# Epic: Real-Time Messaging Experience
+# Epic: Messaging Core Experience (Polling + Push)
 
-Owner: Full Stack  
-Status: Active  
-Last Updated: 2026-02-20  
+Owner: Full Stack
+Status: Active
+Last Updated: 2026-02-23
 Depends On: `docs/execution/epics/E03-matching.md`
 
 ## Overview
 
-Real-time messaging between matches. WebSocket-based chat with reliable delivery.
+Messaging between matches using REST + push + polling in MVP.
 
-**Duration:** 4 weeks (Weeks 13-16)  
-**Phase:** Tech Phase 4  
+**Window:** Weeks 9-10
+**Epic:** E04
 **Priority:** P0 (Committed)
+
+> **Canonical sequencing and scope:** `docs/execution/epic-plans/implementation-plan.md`.
+> Task tables below are detailed drafts and may lag; reconcile against the implementation plan before sprint execution.
 
 ## Specs
 

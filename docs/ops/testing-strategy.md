@@ -1,9 +1,9 @@
 # Testing Strategy
 
-Owner: Engineering + QA  
-Status: Active  
-Last Updated: 2026-02-20  
-Depends On: `docs/execution/phases/implementation-plan.md`
+Owner: Engineering + QA
+Status: Active
+Last Updated: 2026-02-23
+Depends On: `docs/execution/epic-plans/implementation-plan.md`
 
 ## Overview
 

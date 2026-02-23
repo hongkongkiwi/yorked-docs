@@ -1,46 +1,46 @@
 # Execution & Delivery
 
-Owner: Product + Engineering  
-Status: Active  
-Last Updated: 2026-02-20  
+Owner: Product + Engineering
+Status: Active
+Last Updated: 2026-02-23
 Depends On: `docs/vision/`
 
 ## Purpose
 
-Epics, phases, and delivery tracking. This is where vision becomes actionable work.
+Epics and delivery tracking. This is where vision becomes actionable work.
 
 ## Hierarchy Level
 
-**Level 2: Epics/Phases** — Translates vision into execution
+**Level 2: Epics** — Translates vision into execution
 
 ## Structure
 
 ```
 execution/
 ├── README.md                 # This file
-├── delivery-checklist.md     # Phase exit criteria and evidence
+├── delivery-checklist.md     # Epic exit criteria and evidence
 ├── backlog.md                # Kanban-style task breakdown
-├── phases/
-│   ├── phase-0-monorepo-setup.md  # Initial scaffolding (before E01)
+├── epic-plans/
+│   ├── phase-0-monorepo-setup.md  # Epic 0 scaffolding (legacy filename)
 │   ├── implementation-plan.md
 │   └── intent-phase-canonical-map.md
 └── epics/                    # Epic-level specs
 ```
 
-## Phase Definitions
+## Epic Definitions
 
-| Phase | Focus | Exit Criteria |
-|-------|-------|---------------|
-| Phase 0 | Monorepo scaffolding | All apps runnable, `pnpm build` passes |
-| Intent | Validate core matching hypothesis | See `phases/intent-phase-canonical-map.md` |
-| MVP | Launch to first users | See `delivery-checklist.md` |
+| Epic | Focus | Exit Criteria |
+|------|-------|---------------|
+| Epic 0 | Monorepo scaffolding | All apps runnable, `pnpm build` passes |
+| Intent Epic | Validate core matching hypothesis | See `epic-plans/intent-phase-canonical-map.md` |
+| MVP Epics | Launch to first users | See `epic-plans/implementation-plan.md` and `delivery-checklist.md` |
 
 ## Authority Model
 
 | File | Authority Level |
 |------|-----------------|
 | `delivery-checklist.md` | Execution Canonical |
-| `phases/*.md` | Execution Canonical |
+| `epic-plans/*.md` | Execution Canonical (epic plans and canonical maps) |
 | `backlog.md` | Planning Context |
 
 ## Linking to Specs

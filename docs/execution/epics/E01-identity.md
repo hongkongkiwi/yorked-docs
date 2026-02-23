@@ -1,18 +1,21 @@
 # Epic: Identity & Core Platform
 
-Owner: Backend + Mobile  
-Status: Active  
-Last Updated: 2026-02-21  
-Depends On: `docs/technical/decisions/ADR-0001-supabase-over-convex.md`, `docs/technical/decisions/ADR-0011-monorepo-project-structure.md`, `docs/technical/decisions/ADR-0012-expo-for-mobile.md`, `docs/execution/phases/phase-0-monorepo-setup.md`
+Owner: Backend + Mobile
+Status: Active
+Last Updated: 2026-02-23
+Depends On: `docs/technical/decisions/ADR-0001-supabase-over-convex.md`, `docs/technical/decisions/ADR-0011-monorepo-project-structure.md`, `docs/technical/decisions/ADR-0012-expo-for-mobile.md`, `docs/execution/epic-plans/phase-0-monorepo-setup.md`
 
 ## Overview
 
 Core infrastructure, authentication, and user management. Foundation for all other features.
 
-**Duration:** 4 weeks (Weeks 1-4)  
-**Phase:** Tech Phase 1  
-**Priority:** P0 (Committed)  
-**Prerequisite:** Phase 0 (Monorepo Setup) must be complete
+**Window:** Weeks 1-2
+**Epic:** E01
+**Priority:** P0 (Committed)
+**Prerequisite:** Epic 0 (Monorepo Setup) must be complete
+
+> **Canonical sequencing and scope:** `docs/execution/epic-plans/implementation-plan.md`.
+> Task tables below are detailed drafts and may lag; reconcile against the implementation plan before sprint execution.
 
 ## Specs
 
@@ -59,7 +62,7 @@ Core infrastructure, authentication, and user management. Foundation for all oth
 
 ## Dependencies
 
-- Phase 0 (Monorepo Setup) - must be complete
+- Epic 0 (Monorepo Setup) - must be complete
 - Supabase project created
 
 ## Related Documents
@@ -67,6 +70,6 @@ Core infrastructure, authentication, and user management. Foundation for all oth
 - `docs/technical/decisions/ADR-0001-supabase-over-convex.md`
 - `docs/technical/decisions/ADR-0011-monorepo-project-structure.md`
 - `docs/technical/decisions/ADR-0012-expo-for-mobile.md`
-- `docs/execution/phases/phase-0-monorepo-setup.md`
+- `docs/execution/epic-plans/phase-0-monorepo-setup.md`
 - `docs/technical/schema/database.md`
 - `docs/technical/contracts/openapi.yaml`

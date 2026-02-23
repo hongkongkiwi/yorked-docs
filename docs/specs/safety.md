@@ -1,8 +1,8 @@
 # Feature Specification: Safety
 
-Owner: Trust & Safety + Engineering  
-Status: Active  
-Last Updated: 2026-02-21  
+Owner: Trust & Safety + Engineering
+Status: Active
+Last Updated: 2026-02-23
 Depends On: `docs/trust-safety/legal-escalation-and-evidence.md`, `docs/ops/slo-sla.md`, `docs/technical/contracts/openapi.yaml`
 
 ## Overview
@@ -11,7 +11,7 @@ The safety feature ensures user protection through content moderation, reporting
 
 ## Scope Clarification
 
-Aligned with `docs/execution/phases/intent-phase-canonical-map.md`:
+Aligned with `docs/execution/epic-plans/intent-phase-canonical-map.md`:
 - MVP moderation is proactive (AI pre-screen + human queue), not passive-only scoring.
 - Evidence and content retention windows are controlled by current safety/privacy policy docs and legal holds, not legacy fixed multi-year defaults.
 
@@ -19,8 +19,8 @@ Aligned with `docs/execution/phases/intent-phase-canonical-map.md`:
 
 ### US-001: Report Content
 
-**As a** user  
-**I want to** report inappropriate content or behavior  
+**As a** user
+**I want to** report inappropriate content or behavior
 **So that** the platform can take action
 
 **Acceptance Criteria:**
@@ -36,8 +36,8 @@ Aligned with `docs/execution/phases/intent-phase-canonical-map.md`:
 
 ### US-002: Block User
 
-**As a** user  
-**I want to** block another user  
+**As a** user
+**I want to** block another user
 **So that** they cannot contact me
 
 **Acceptance Criteria:**
@@ -53,8 +53,8 @@ Aligned with `docs/execution/phases/intent-phase-canonical-map.md`:
 
 ### US-003: Appeal Suspension
 
-**As a** suspended user  
-**I want to** appeal the decision  
+**As a** suspended user
+**I want to** appeal the decision
 **So that** I can restore my account if wrongly suspended
 
 **Acceptance Criteria:**
@@ -70,8 +70,8 @@ Aligned with `docs/execution/phases/intent-phase-canonical-map.md`:
 
 ### US-004: Moderation Queue
 
-**As a** moderator  
-**I want to** review reported content  
+**As a** moderator
+**I want to** review reported content
 **So that** I can enforce policies
 
 **Acceptance Criteria:**
@@ -90,8 +90,8 @@ Aligned with `docs/execution/phases/intent-phase-canonical-map.md`:
 
 ### US-005: Automated Moderation
 
-**As a** the system  
-**I want to** automatically detect violations  
+**As a** the system
+**I want to** automatically detect violations
 **So that** we can respond quickly
 
 **Acceptance Criteria:**
@@ -112,8 +112,8 @@ Aligned with `docs/execution/phases/intent-phase-canonical-map.md`:
 
 ### US-006: Evidence Preservation
 
-**As a** Trust & Safety  
-**I want to** preserve evidence for legal cases  
+**As a** Trust & Safety
+**I want to** preserve evidence for legal cases
 **So that** we can comply with law enforcement requests
 
 **Acceptance Criteria:**
@@ -128,8 +128,8 @@ Aligned with `docs/execution/phases/intent-phase-canonical-map.md`:
 
 ### US-007: Law Enforcement Response
 
-**As a** legal team member  
-**I want to** respond to law enforcement requests  
+**As a** legal team member
+**I want to** respond to law enforcement requests
 **So that** we comply with legal obligations
 
 **Acceptance Criteria:**

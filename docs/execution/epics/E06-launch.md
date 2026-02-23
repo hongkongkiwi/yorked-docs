@@ -1,17 +1,20 @@
 # Epic: Reliability & Launch Experience
 
-Owner: Full Stack  
-Status: Active  
-Last Updated: 2026-02-20  
+Owner: Full Stack
+Status: Active
+Last Updated: 2026-02-23
 Depends On: `docs/execution/epics/E05-safety.md`
 
 ## Overview
 
 Production readiness and beta launch. Performance optimization, app store submission, and monitoring.
 
-**Duration:** 4 weeks (Weeks 21-24)  
-**Phase:** Tech Phase 6  
+**Window:** Weeks 13-14
+**Epic:** E06
 **Priority:** P0 (Committed)
+
+> **Canonical sequencing and scope:** `docs/execution/epic-plans/implementation-plan.md`.
+> Task tables below are detailed drafts and may lag; reconcile against the implementation plan before sprint execution.
 
 ## Specs
 

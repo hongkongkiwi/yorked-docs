@@ -1,17 +1,20 @@
 # Epic: Trust & Safety Experience
 
-Owner: Backend + ML  
-Status: Active  
-Last Updated: 2026-02-20  
+Owner: Backend + ML
+Status: Active
+Last Updated: 2026-02-23
 Depends On: `docs/execution/epics/E04-chat.md`
 
 ## Overview
 
 Trust and safety infrastructure including content moderation, reporting, and enforcement.
 
-**Duration:** 4 weeks (Weeks 17-20)  
-**Phase:** Tech Phase 5  
+**Window:** Weeks 11-12
+**Epic:** E05
 **Priority:** P0 (Committed)
+
+> **Canonical sequencing and scope:** `docs/execution/epic-plans/implementation-plan.md`.
+> Task tables below are detailed drafts and may lag; reconcile against the implementation plan before sprint execution.
 
 ## Specs
 
@@ -51,7 +54,7 @@ Trust and safety infrastructure including content moderation, reporting, and enf
 
 ## Dependencies
 
-- E04: Real-Time Messaging Experience
+- E04: Messaging Core Experience (Polling + Push)
 
 ## Related Documents
 

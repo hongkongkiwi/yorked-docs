@@ -1,32 +1,36 @@
 # Epics
 
-Owner: Product + Engineering  
-Status: Active  
-Last Updated: 2026-02-20  
+Owner: Product + Engineering
+Status: Active
+Last Updated: 2026-02-23
 Depends On: `docs/execution/README.md`
 
 ## Purpose
 
-Epic-level specifications that group related features. Each epic represents a major capability with clear deliverables and success metrics.
+Epic-level specifications grouped by capability. This index is a roll-up view of execution.
 
-## Epic Index
+## Canonical Source
 
-### MVP Epics (Committed)
+For sequencing, timing windows, and dependency order, use:
 
-| Epic | Name | Duration | Points | Status |
+`docs/execution/epic-plans/implementation-plan.md`
+
+If an individual epic doc conflicts with the implementation plan, the implementation plan wins.
+
+## MVP Epic Index (Committed)
+
+| Epic | Name | Window | Status | Canonical Plan |
 |------|------|----------|--------|--------|
-| [Phase 0](phases/phase-0-monorepo-setup.md) | Monorepo Setup | 1-2 days | 17 | Planned |
-| [E01](E01-identity.md) | Identity & Core Platform | 4 weeks | 43 | Active |
-| [E02](E02-onboarding.md) | Onboarding & Verification Journey | 4 weeks | 59 | Active |
-| [E03](E03-matching.md) | Curated Matching Experience | 4 weeks | 68 | Active |
-| [E04](E04-chat.md) | Real-Time Messaging Experience | 4 weeks | 70 | Active |
-| [E05](E05-safety.md) | Trust & Safety Experience | 4 weeks | 27 | Active |
-| [E06](E06-launch.md) | Reliability & Launch Experience | 4 weeks | 48 | Active |
+| [Epic 0](../epic-plans/phase-0-monorepo-setup.md) | Monorepo Setup | 1-2 days | Planned | [`phase-0-monorepo-setup.md`](../epic-plans/phase-0-monorepo-setup.md) |
+| [E01](E01-identity.md) | Identity & Core Platform | Weeks 1-2 | Active | [`implementation-plan.md`](../epic-plans/implementation-plan.md) |
+| [E02](E02-onboarding.md) | Onboarding & Verification Journey | Weeks 3-5 | Active | [`implementation-plan.md`](../epic-plans/implementation-plan.md) |
+| [E03](E03-matching.md) | Curated Matching Experience | Weeks 6-8 | Active | [`implementation-plan.md`](../epic-plans/implementation-plan.md) |
+| [E04](E04-chat.md) | Messaging Core (Polling + Push) | Weeks 9-10 | Active | [`implementation-plan.md`](../epic-plans/implementation-plan.md) |
+| [E05](E05-safety.md) | Trust & Safety Experience | Weeks 11-12 | Active | [`implementation-plan.md`](../epic-plans/implementation-plan.md) |
+| [E06](E06-launch.md) | Reliability & Launch Experience | Weeks 13-14 | Active | [`implementation-plan.md`](../epic-plans/implementation-plan.md) |
+| Epic 7 | Real-Time Messaging Upgrade (Post-launch) | Post-launch / Next | Planned | [`implementation-plan.md`](../epic-plans/implementation-plan.md) |
 
-**Total MVP Points:** 315 (excluding Phase 0: 17)  
-**Total MVP Duration:** 24 weeks
-
-### Post-MVP Epics (Exploratory)
+## Post-MVP Epics (Exploratory)
 
 | Epic | Name | Duration | Points | Status |
 |------|------|----------|--------|--------|
@@ -42,7 +46,7 @@ Epic-level specifications that group related features. Each epic represents a ma
 
 **Total Exploratory Points:** 327
 
-## Epic → Spec Mapping
+## Epic to Spec Mapping
 
 | Epic | Specs |
 |------|-------|
@@ -53,59 +57,10 @@ Epic-level specifications that group related features. Each epic represents a ma
 | E05: Safety | `specs/safety.md` |
 | E06: Launch | `ops/slo-sla.md`, `ops/testing-strategy.md` |
 
-## Epic Template
+## Maintenance Rule
 
-When creating a new epic:
+Detailed task breakdowns in individual epic docs are planning drafts and may lag.
+Before sprint planning, reconcile each active epic doc against:
 
-```markdown
-# Epic: [Name]
-
-Owner: [Team]
-Status: Draft | Active | Complete
-Last Updated: YYYY-MM-DD
-Depends On: [Other epic or dependency]
-
-## Overview
-Brief description of the epic capability.
-
-## Specs
-- [spec-name.md](../specs/spec-name.md)
-
-## Success Metrics
-- Metric 1: Target
-- Metric 2: Target
-
-## Tasks
-
-| ID | Task | Assignee | Points | Status |
-|----|------|----------|--------|--------|
-| EXX-T01 | Task description | Team | X | |
-
-**Total Points:** X
-
-## Definition of Done
-- [ ] Criterion 1
-- [ ] Criterion 2
-
-## Dependencies
-- [List]
-
-## Related Documents
-- [Links to specs, ADRs, etc.]
-```
-
-## Adding New Epics
-
-1. Create epic doc in this directory using template
-2. Link to constituent specs in `docs/specs/`
-3. Reference from relevant phase in `phases/`
-4. Update this README index
-
-## Task Status
-
-| Status | Meaning |
-|--------|---------|
-| (empty) | Not started |
-| In Progress | Currently being worked on |
-| Done | Completed |
-| Blocked | Waiting on dependency |
+1. `docs/execution/epic-plans/implementation-plan.md`
+2. `docs/execution/delivery-checklist.md`

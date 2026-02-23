@@ -1,8 +1,8 @@
 # Ideas & Future Considerations
 
-Owner: Product  
-Status: Active  
-Last Updated: 2026-02-20  
+Owner: Product
+Status: Active
+Last Updated: 2026-02-23
 Depends On: `docs/vision/product-vision.md`
 
 ## Purpose
@@ -83,5 +83,5 @@ When an idea is ready to become real:
 
 1. Create spec in `docs/specs/`
 2. Add to epic in `docs/execution/epics/`
-3. Update phase in `docs/execution/phases/`
+3. Update phase in `docs/execution/epic-plans/`
 4. Remove from this file

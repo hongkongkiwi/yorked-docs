@@ -1,8 +1,8 @@
 # Documentation Guide
 
-Owner: Engineering  
-Status: Active  
-Last Updated: 2026-02-20  
+Owner: Engineering
+Status: Active
+Last Updated: 2026-02-23
 Depends On: N/A
 
 This directory is the shared product and engineering source of truth for Yoked. Use this file as the map for where decisions live and what to trust when docs disagree.
@@ -28,7 +28,7 @@ We're a small team in startup mode. What this means for docs:
 | Level | Location | Contains | Purpose |
 |-------|----------|----------|---------|
 | **1. Vision** | `vision/` | Product vision, roadmap, competitive | *What & Why* |
-| **2. Epics** | `execution/` | Phases, epics, delivery tracking | *Sequencing & Scope* |
+| **2. Epics** | `execution/` | Epic plans, epic specs, delivery tracking | *Sequencing & Scope* |
 | **3. Stories** | `specs/` | Feature specs with acceptance criteria | *Requirements* |
 | **4. Technical** | `technical/` | Contracts, ADRs, schema, architecture | *Implementation Authority* |
 
@@ -59,11 +59,11 @@ docs/
 │   ├── competitive.md     # Competitive landscape
 │   └── ideas.md           # Future ideas (not committed)
 │
-├── execution/             # Level 2: Epics & Phases
+├── execution/             # Level 2: Epics
 │   ├── README.md
 │   ├── delivery-checklist.md
 │   ├── backlog.md
-│   ├── phases/
+│   ├── epic-plans/
 │   │   ├── README.md
 │   │   ├── implementation-plan.md
 │   │   └── intent-phase-canonical-map.md
@@ -166,7 +166,7 @@ See **`AGENTS.md`** for detailed workflow instructions.
 | Getting Started | `AGENTS.md` |
 | Product Vision | `vision/product-vision.md` |
 | Roadmap | `vision/roadmap.md` |
-| Phase Status | `execution/delivery-checklist.md` |
+| Epic Status | `execution/delivery-checklist.md` |
 | API Reference | `technical/contracts/openapi.yaml` |
 | Feature Specs | `specs/` |
 | Architecture Decisions | `technical/decisions/` |

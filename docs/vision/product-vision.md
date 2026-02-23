@@ -2,13 +2,13 @@
 
 Owner: Product + Engineering
 Status: Active
-Last Updated: 2026-02-20
-Depends On: `docs/vision/roadmap.md`, `docs/execution/phases/intent-phase-canonical-map.md`
+Last Updated: 2026-02-23
+Depends On: `docs/vision/roadmap.md`, `docs/execution/epic-plans/intent-phase-canonical-map.md`
 
 ## MVP Phased Approach
 
 See `docs/vision/roadmap.md` for full phase details.
-Use `docs/execution/phases/intent-phase-canonical-map.md` as the interpretation layer when legacy idea docs differ from current MVP scope.
+Use `docs/execution/epic-plans/intent-phase-canonical-map.md` as the interpretation layer when legacy idea docs differ from current MVP scope.
 Use `docs/execution/delivery-checklist.md` as the source for per-phase owners and exit gates.
 
 | Phase | Timeline | Key Features |
@@ -20,7 +20,7 @@ Use `docs/execution/delivery-checklist.md` as the source for per-phase owners an
 | **MVP Phase 5** | Weeks 17-20 | Trust & safety experience |
 | **MVP Phase 6** | Weeks 21-24 | Reliability & launch experience |
 
-**MVP (beta-ready):** ~6 months (24 weeks).  
+**MVP (beta-ready):** ~6 months (24 weeks).
 **Full vision (post-MVP expansions):** ~9+ months.
 
 ---

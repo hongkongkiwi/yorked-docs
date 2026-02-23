@@ -1,8 +1,8 @@
 # Feature Specification: Chat
 
-Owner: Product + Engineering  
-Status: Active  
-Last Updated: 2026-02-20  
+Owner: Product + Engineering
+Status: Active
+Last Updated: 2026-02-23
 Depends On: `docs/ux/flows/chat.md`, `docs/technical/contracts/openapi.yaml`, `docs/technical/contracts/asyncapi.yaml`
 
 ## Overview
@@ -11,7 +11,7 @@ The chat feature enables 1:1 messaging between matched users. It includes real-t
 
 ## Scope Clarification
 
-Aligned with `docs/execution/phases/intent-phase-canonical-map.md`:
+Aligned with `docs/execution/epic-plans/intent-phase-canonical-map.md`:
 - MVP chat scope is text-first core messaging. Rich media/edit/reaction ecosystems are post-MVP.
 - Advanced per-match date-helper and unmatch-assistant character flows are not required for MVP launch readiness.
 
@@ -19,8 +19,8 @@ Aligned with `docs/execution/phases/intent-phase-canonical-map.md`:
 
 ### US-001: Send Message
 
-**As a** matched user  
-**I want to** send a text message  
+**As a** matched user
+**I want to** send a text message
 **So that** I can start a conversation
 
 **Acceptance Criteria:**
@@ -37,8 +37,8 @@ Aligned with `docs/execution/phases/intent-phase-canonical-map.md`:
 
 ### US-002: Receive Message
 
-**As a** matched user  
-**I want to** receive messages in real-time  
+**As a** matched user
+**I want to** receive messages in real-time
 **So that** I can respond promptly
 
 **Acceptance Criteria:**
@@ -54,8 +54,8 @@ Aligned with `docs/execution/phases/intent-phase-canonical-map.md`:
 
 ### US-003: Read Receipts
 
-**As a** user  
-**I want to** know when my message is read  
+**As a** user
+**I want to** know when my message is read
 **So that** I know if they're active
 
 **Acceptance Criteria:**
@@ -70,8 +70,8 @@ Aligned with `docs/execution/phases/intent-phase-canonical-map.md`:
 
 ### US-004: Typing Indicators
 
-**As a** user  
-**I want to** see when someone is typing  
+**As a** user
+**I want to** see when someone is typing
 **So that** I know to wait for their response
 
 **Acceptance Criteria:**
@@ -85,8 +85,8 @@ Aligned with `docs/execution/phases/intent-phase-canonical-map.md`:
 
 ### US-005: View Message History
 
-**As a** user  
-**I want to** see past messages  
+**As a** user
+**I want to** see past messages
 **So that** I can catch up on the conversation
 
 **Acceptance Criteria:**
@@ -101,8 +101,8 @@ Aligned with `docs/execution/phases/intent-phase-canonical-map.md`:
 
 ### US-006: Unmatch
 
-**As a** user  
-**I want to** unmatch and end the chat  
+**As a** user
+**I want to** unmatch and end the chat
 **So that** I can stop talking to someone
 
 **Acceptance Criteria:**
@@ -118,8 +118,8 @@ Aligned with `docs/execution/phases/intent-phase-canonical-map.md`:
 
 ### US-007: Report User
 
-**As a** user  
-**I want to** report inappropriate behavior  
+**As a** user
+**I want to** report inappropriate behavior
 **So that** the platform remains safe
 
 **Acceptance Criteria:**
@@ -135,8 +135,8 @@ Aligned with `docs/execution/phases/intent-phase-canonical-map.md`:
 
 ### US-008: Block User
 
-**As a** user  
-**I want to** block someone  
+**As a** user
+**I want to** block someone
 **So that** they can't contact me
 
 **Acceptance Criteria:**
@@ -177,7 +177,7 @@ CREATE TABLE messages (
   client_message_id TEXT NOT NULL,
   created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
   read_at TIMESTAMPTZ,
-  
+
   UNIQUE(match_id, client_message_id)
 );
 ```
