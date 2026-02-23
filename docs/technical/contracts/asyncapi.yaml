@@ -1,0 +1,875 @@
+asyncapi: '3.0.0'
+info:
+  title: Yoked WebSocket API
+  version: '1.0.0'
+  description: |
+    Real-time WebSocket API for chat, match updates, and notifications.
+    
+    ## Connection
+    - Endpoint: `wss://realtime.yoked.app/v1?token={access_token}`
+    - Authentication: Access token in query parameter (expires after 15 minutes)
+    - Heartbeat: Ping/pong every 30 seconds
+    
+    ## Event Envelope
+    All events follow this structure:
+    ```json
+    {
+      "eventId": "uuid",
+      "eventType": "string",
+      "timestamp": "2026-02-19T12:00:00Z",
+      "payload": {}
+    }
+    ```
+    
+    ## Reliability
+    - At-least-once delivery (deduplicate using `eventId`)
+    - Messages within a match are ordered by `createdAt`
+    - Offline events queued for 7 days (sync via REST on reconnect)
+
+servers:
+  production:
+    host: realtime.yoked.app
+    pathname: /v1
+    protocol: wss
+    description: Production WebSocket server
+    bindings:
+      ws:
+        query:
+          type: object
+          properties:
+            token:
+              type: string
+              description: Access token for authentication
+          required:
+            - token
+
+channels:
+  # System channels
+  connection:
+    description: Connection lifecycle events
+    messages:
+      connection_ack:
+        $ref: '#/components/messages/ConnectionAck'
+      connection_error:
+        $ref: '#/components/messages/ConnectionError'
+      token_expired:
+        $ref: '#/components/messages/TokenExpired'
+
+  # Match channels
+  match/{matchId}:
+    description: Events for a specific match conversation
+    parameters:
+      matchId:
+        description: Unique match identifier
+        schema:
+          type: string
+          format: uuid
+    messages:
+      message_new:
+        $ref: '#/components/messages/MessageNew'
+      message_ack:
+        $ref: '#/components/messages/MessageAck'
+      message_read:
+        $ref: '#/components/messages/MessageRead'
+      typing_indicator:
+        $ref: '#/components/messages/TypingIndicator'
+      presence_update:
+        $ref: '#/components/messages/PresenceUpdate'
+      match_status_changed:
+        $ref: '#/components/messages/MatchStatusChanged'
+
+  # User channels
+  user/{userId}:
+    description: Events for a specific user
+    parameters:
+      userId:
+        description: Unique user identifier
+        schema:
+          type: string
+          format: uuid
+    messages:
+      match_offer_new:
+        $ref: '#/components/messages/MatchOfferNew'
+      match_offer_mutual:
+        $ref: '#/components/messages/MatchOfferMutual'
+      notification:
+        $ref: '#/components/messages/Notification'
+      visual_preference_profile_updated:
+        $ref: '#/components/messages/VisualPreferenceProfileUpdated'
+      photo_recommendations_ready:
+        $ref: '#/components/messages/PhotoRecommendationsReady'
+
+operations:
+  # Client -> Server operations
+  subscribe:
+    action: send
+    channel:
+      $ref: '#/channels/connection'
+    messages:
+      - $ref: '#/components/messages/Subscribe'
+    reply:
+      channel:
+        $ref: '#/channels/connection'
+      messages:
+        - $ref: '#/components/messages/SubscriptionAck'
+        - $ref: '#/components/messages/SubscriptionError'
+
+  unsubscribe:
+    action: send
+    channel:
+      $ref: '#/channels/connection'
+    messages:
+      - $ref: '#/components/messages/Unsubscribe'
+
+  typing:
+    action: send
+    channel:
+      $ref: '#/channels/match/{matchId}'
+    messages:
+      - $ref: '#/components/messages/Typing'
+
+  message_read_client:
+    action: send
+    channel:
+      $ref: '#/channels/match/{matchId}'
+    messages:
+      - $ref: '#/components/messages/MessageReadClient'
+
+  presence:
+    action: send
+    channel:
+      $ref: '#/channels/connection'
+    messages:
+      - $ref: '#/components/messages/Presence'
+
+  ack:
+    action: send
+    channel:
+      $ref: '#/channels/connection'
+    messages:
+      - $ref: '#/components/messages/Ack'
+
+  # Server -> Client operations
+  connection_lifecycle:
+    action: receive
+    channel:
+      $ref: '#/channels/connection'
+    messages:
+      - $ref: '#/components/messages/ConnectionAck'
+      - $ref: '#/components/messages/ConnectionError'
+      - $ref: '#/components/messages/TokenExpired'
+      - $ref: '#/components/messages/Error'
+
+  match_events:
+    action: receive
+    channel:
+      $ref: '#/channels/match/{matchId}'
+    messages:
+      - $ref: '#/components/messages/MessageNew'
+      - $ref: '#/components/messages/MessageAck'
+      - $ref: '#/components/messages/MessageRead'
+      - $ref: '#/components/messages/TypingIndicator'
+      - $ref: '#/components/messages/PresenceUpdate'
+      - $ref: '#/components/messages/MatchStatusChanged'
+
+  user_events:
+    action: receive
+    channel:
+      $ref: '#/channels/user/{userId}'
+    messages:
+      - $ref: '#/components/messages/MatchOfferNew'
+      - $ref: '#/components/messages/MatchOfferMutual'
+      - $ref: '#/components/messages/Notification'
+      - $ref: '#/components/messages/VisualPreferenceProfileUpdated'
+      - $ref: '#/components/messages/PhotoRecommendationsReady'
+
+components:
+  messages:
+    # Connection Lifecycle
+    ConnectionAck:
+      name: connection_ack
+      title: Connection Acknowledged
+      description: Successful connection established
+      payload:
+        $ref: '#/components/schemas/ConnectionAckPayload'
+
+    ConnectionError:
+      name: connection_error
+      title: Connection Error
+      description: Connection rejected
+      payload:
+        $ref: '#/components/schemas/ConnectionErrorPayload'
+
+    TokenExpired:
+      name: token_expired
+      title: Token Expired
+      description: Token approaching expiry; client should reconnect
+      payload:
+        $ref: '#/components/schemas/TokenExpiredPayload'
+
+    # Subscription
+    Subscribe:
+      name: subscribe
+      title: Subscribe to Channels
+      description: Subscribe to channels for match or user events
+      payload:
+        $ref: '#/components/schemas/SubscribePayload'
+
+    Unsubscribe:
+      name: unsubscribe
+      title: Unsubscribe from Channels
+      description: Unsubscribe from channels
+      payload:
+        $ref: '#/components/schemas/UnsubscribePayload'
+
+    SubscriptionAck:
+      name: subscription_ack
+      title: Subscription Acknowledged
+      description: Subscription confirmed
+      payload:
+        $ref: '#/components/schemas/SubscriptionAckPayload'
+
+    SubscriptionError:
+      name: subscription_error
+      title: Subscription Error
+      description: Subscription failed
+      payload:
+        $ref: '#/components/schemas/SubscriptionErrorPayload'
+
+    # Chat
+    MessageNew:
+      name: message_new
+      title: New Message
+      description: New message in a subscribed match
+      payload:
+        $ref: '#/components/schemas/MessageNewPayload'
+      bindings:
+        ws:
+          ack:
+            required: true
+            timeoutMs: 5000
+
+    MessageAck:
+      name: message_ack
+      title: Message Acknowledgment
+      description: Server acknowledgment of message receipt
+      payload:
+        $ref: '#/components/schemas/MessageAckPayload'
+
+    MessageReadClient:
+      name: message_read
+      title: Mark Messages Read (Client)
+      description: Mark messages as read (client to server)
+      payload:
+        $ref: '#/components/schemas/MessageReadClientPayload'
+
+    MessageRead:
+      name: message_read
+      title: Messages Read
+      description: Messages marked as read by other user
+      payload:
+        $ref: '#/components/schemas/MessageReadPayload'
+
+    # Typing
+    Typing:
+      name: typing
+      title: Typing Status
+      description: Indicate typing status in a match
+      payload:
+        $ref: '#/components/schemas/TypingPayload'
+
+    TypingIndicator:
+      name: typing_indicator
+      title: Typing Indicator
+      description: Other user is typing
+      payload:
+        $ref: '#/components/schemas/TypingIndicatorPayload'
+
+    # Presence
+    Presence:
+      name: presence
+      title: Update Presence
+      description: Update user presence status
+      payload:
+        $ref: '#/components/schemas/PresencePayload'
+
+    PresenceUpdate:
+      name: presence_update
+      title: Presence Update
+      description: Other user's presence changed
+      payload:
+        $ref: '#/components/schemas/PresenceUpdatePayload'
+
+    # Match Status
+    MatchStatusChanged:
+      name: match_status_changed
+      title: Match Status Changed
+      description: Match status update (new match, unmatch, etc.)
+      payload:
+        $ref: '#/components/schemas/MatchStatusChangedPayload'
+
+    # Match Offers
+    MatchOfferNew:
+      name: match_offer_new
+      title: New Match Offer
+      description: New daily match offer available
+      payload:
+        $ref: '#/components/schemas/MatchOfferNewPayload'
+
+    MatchOfferMutual:
+      name: match_offer_mutual
+      title: Mutual Match
+      description: Mutual match created (both users accepted)
+      payload:
+        $ref: '#/components/schemas/MatchOfferMutualPayload'
+
+    # Visual Preference
+    VisualPreferenceProfileUpdated:
+      name: visual_preference_profile_updated
+      title: Visual Preference Profile Updated
+      description: User visual preference profile updated after VPS choice processing
+      payload:
+        $ref: '#/components/schemas/VisualPreferenceProfileUpdatedPayload'
+
+    # Photo Studio
+    PhotoRecommendationsReady:
+      name: photo_recommendations_ready
+      title: Photo Recommendations Ready
+      description: Photo Studio recommendations are ready for display
+      payload:
+        $ref: '#/components/schemas/PhotoRecommendationsReadyPayload'
+
+    # Notification
+    Notification:
+      name: notification
+      title: Notification
+      description: General notification (not chat-related)
+      payload:
+        $ref: '#/components/schemas/NotificationPayload'
+
+    # Acknowledgment
+    Ack:
+      name: ack
+      title: Event Acknowledgment
+      description: Client acknowledgment of an event
+      payload:
+        $ref: '#/components/schemas/AckPayload'
+
+    # Error
+    Error:
+      name: error
+      title: Error
+      description: General error event
+      payload:
+        $ref: '#/components/schemas/ErrorPayload'
+
+  schemas:
+    # Event Envelope
+    EventEnvelope:
+      type: object
+      required:
+        - eventId
+        - eventType
+        - timestamp
+        - payload
+      properties:
+        eventId:
+          type: string
+          format: uuid
+          description: Unique event identifier
+        eventType:
+          type: string
+          description: Event type name
+        timestamp:
+          type: string
+          format: date-time
+          description: When the event occurred
+        requiresAck:
+          type: boolean
+          description: Whether client must acknowledge
+        ackTimeoutMs:
+          type: integer
+          description: Acknowledgment timeout in milliseconds
+        payload:
+          type: object
+          description: Event-specific payload
+
+    # Connection Payloads
+    ConnectionAckPayload:
+      type: object
+      required:
+        - connectionId
+        - expiresAt
+      properties:
+        connectionId:
+          type: string
+          format: uuid
+          description: Unique connection identifier
+        expiresAt:
+          type: string
+          format: date-time
+          description: When the connection token expires
+
+    ConnectionErrorPayload:
+      type: object
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: string
+          enum:
+            - invalid_token
+            - token_expired
+            - rate_limited
+            - server_error
+        message:
+          type: string
+          description: Human-readable error message
+        retryAfter:
+          type: integer
+          description: Seconds before retry allowed
+
+    TokenExpiredPayload:
+      type: object
+      required:
+        - expiresAt
+        - gracePeriodMs
+      properties:
+        expiresAt:
+          type: string
+          format: date-time
+        gracePeriodMs:
+          type: integer
+          description: Grace period in milliseconds
+
+    # Subscription Payloads
+    SubscribePayload:
+      type: object
+      required:
+        - channels
+      properties:
+        channels:
+          type: array
+          items:
+            type: string
+            pattern: '^(match|user):[a-f0-9-]+$'
+          description: Channels to subscribe to (e.g., "match:uuid", "user:uuid")
+
+    UnsubscribePayload:
+      type: object
+      required:
+        - channels
+      properties:
+        channels:
+          type: array
+          items:
+            type: string
+
+    SubscriptionAckPayload:
+      type: object
+      required:
+        - channels
+      properties:
+        channels:
+          type: array
+          items:
+            type: string
+
+    SubscriptionErrorPayload:
+      type: object
+      required:
+        - channel
+        - code
+        - message
+      properties:
+        channel:
+          type: string
+        code:
+          type: string
+          enum:
+            - not_found
+            - not_authorized
+            - server_error
+        message:
+          type: string
+
+    # Message Payloads
+    Message:
+      type: object
+      required:
+        - id
+        - senderId
+        - content
+        - createdAt
+      properties:
+        id:
+          type: string
+          format: uuid
+        senderId:
+          type: string
+          format: uuid
+        content:
+          type: string
+          maxLength: 5000
+        createdAt:
+          type: string
+          format: date-time
+        clientMessageId:
+          type: string
+          description: Client-generated ID for deduplication
+
+    MessageNewPayload:
+      type: object
+      required:
+        - matchId
+        - message
+      properties:
+        matchId:
+          type: string
+          format: uuid
+        message:
+          $ref: '#/components/schemas/Message'
+
+    MessageAckPayload:
+      type: object
+      required:
+        - clientMessageId
+        - messageId
+        - status
+      properties:
+        clientMessageId:
+          type: string
+        messageId:
+          type: string
+          format: uuid
+        status:
+          type: string
+          enum:
+            - delivered
+            - failed
+
+    MessageReadClientPayload:
+      type: object
+      required:
+        - matchId
+        - upToMessageId
+      properties:
+        matchId:
+          type: string
+          format: uuid
+        upToMessageId:
+          type: string
+          format: uuid
+          description: Mark all messages up to this ID as read
+
+    MessageReadPayload:
+      type: object
+      required:
+        - matchId
+        - readByUserId
+        - upToMessageId
+        - readAt
+      properties:
+        matchId:
+          type: string
+          format: uuid
+        readByUserId:
+          type: string
+          format: uuid
+        upToMessageId:
+          type: string
+          format: uuid
+        readAt:
+          type: string
+          format: date-time
+
+    # Typing Payloads
+    TypingPayload:
+      type: object
+      required:
+        - matchId
+        - isTyping
+      properties:
+        matchId:
+          type: string
+          format: uuid
+        isTyping:
+          type: boolean
+
+    TypingIndicatorPayload:
+      type: object
+      required:
+        - matchId
+        - userId
+        - isTyping
+      properties:
+        matchId:
+          type: string
+          format: uuid
+        userId:
+          type: string
+          format: uuid
+        isTyping:
+          type: boolean
+
+    # Presence Payloads
+    PresencePayload:
+      type: object
+      required:
+        - status
+      properties:
+        status:
+          type: string
+          enum:
+            - online
+            - away
+            - offline
+
+    PresenceUpdatePayload:
+      type: object
+      required:
+        - userId
+        - matchId
+        - status
+      properties:
+        userId:
+          type: string
+          format: uuid
+        matchId:
+          type: string
+          format: uuid
+        status:
+          type: string
+          enum:
+            - online
+            - away
+            - offline
+        lastActiveAt:
+          type: string
+          format: date-time
+
+    # Match Status Payload
+    MatchStatusChangedPayload:
+      type: object
+      required:
+        - matchId
+        - status
+      properties:
+        matchId:
+          type: string
+          format: uuid
+        status:
+          type: string
+          enum:
+            - active
+            - closed
+        previousStatus:
+          type: string
+          enum:
+            - active
+            - closed
+          nullable: true
+        reason:
+          type: string
+          enum:
+            - matched
+            - unmatched
+            - blocked
+            - deleted
+            - expired
+          nullable: true
+        user:
+          $ref: '#/components/schemas/UserSummary'
+
+    # Match Offer Payloads
+    UserSummary:
+      type: object
+      required:
+        - id
+        - displayName
+        - photos
+      properties:
+        id:
+          type: string
+          format: uuid
+        displayName:
+          type: string
+        photos:
+          type: array
+          items:
+            type: string
+            format: uri
+        age:
+          type: integer
+        compatibilityScore:
+          type: integer
+          minimum: 0
+          maximum: 100
+        compatibilityThemes:
+          type: array
+          items:
+            type: string
+
+    MatchOfferNewPayload:
+      type: object
+      required:
+        - offerId
+        - user
+        - expiresAt
+      properties:
+        offerId:
+          type: string
+          format: uuid
+        user:
+          $ref: '#/components/schemas/UserSummary'
+        expiresAt:
+          type: string
+          format: date-time
+
+    MatchOfferMutualPayload:
+      type: object
+      required:
+        - offerId
+        - matchId
+        - user
+      properties:
+        offerId:
+          type: string
+          format: uuid
+        matchId:
+          type: string
+          format: uuid
+        user:
+          $ref: '#/components/schemas/UserSummary'
+
+    # Visual Preference Payload
+    VisualPreferenceProfileUpdatedPayload:
+      type: object
+      required:
+        - sessionId
+        - status
+        - completedPairs
+        - targetPairs
+      properties:
+        sessionId:
+          type: string
+          format: uuid
+        status:
+          type: string
+          enum:
+            - in_progress
+            - ready
+            - stale
+        completedPairs:
+          type: integer
+        targetPairs:
+          type: integer
+        confidence:
+          type: number
+          minimum: 0
+          maximum: 1
+        profileSnapshotId:
+          type: string
+          format: uuid
+        modelVersion:
+          type: string
+        nextStep:
+          type: string
+          enum:
+            - continue
+            - refine
+            - complete
+            - matching
+
+    # Photo Recommendations Payload
+    PhotoRecommendation:
+      type: object
+      required:
+        - photoId
+        - rank
+        - score
+      properties:
+        photoId:
+          type: string
+          format: uuid
+        rank:
+          type: integer
+          minimum: 1
+        score:
+          type: number
+          minimum: 0
+          maximum: 1
+
+    PhotoRecommendationsReadyPayload:
+      type: object
+      required:
+        - runId
+        - recommendations
+        - generatedAt
+      properties:
+        runId:
+          type: string
+          format: uuid
+        recommendations:
+          type: array
+          items:
+            $ref: '#/components/schemas/PhotoRecommendation'
+        generatedAt:
+          type: string
+          format: date-time
+
+    # Notification Payload
+    NotificationPayload:
+      type: object
+      required:
+        - type
+        - title
+        - body
+      properties:
+        type:
+          type: string
+          enum:
+            - verification_reminder
+            - profile_incomplete
+            - safety_alert
+        title:
+          type: string
+        body:
+          type: string
+        actionUrl:
+          type: string
+        dismissible:
+          type: boolean
+          default: true
+
+    # Ack Payload
+    AckPayload:
+      type: object
+      required:
+        - eventId
+      properties:
+        eventId:
+          type: string
+          format: uuid
+          description: ID of the event being acknowledged
+
+    # Error Payload
+    ErrorPayload:
+      type: object
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: string
+          enum:
+            - rate_limited
+            - invalid_event
+            - server_error
+        message:
+          type: string
+        originalEventId:
+          type: string
+          format: uuid
+          description: ID of the event that caused the error
